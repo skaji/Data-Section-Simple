@@ -11,7 +11,7 @@ has $.package;
 sub get-data-section(Str :$name, Str :$content) is export {
     $?CLASS!parse(:$name, content => $content // CALLER::UNIT::<$=finish>);
 }
-multi method get-data-section(Str :$name, Str :$content) {
+method get-data-section(Str :$name, Str :$content) {
     self!parse(:$name, content => $content // CALLER::UNIT::<$=finish>);
 }
 
