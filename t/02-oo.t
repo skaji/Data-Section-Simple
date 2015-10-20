@@ -13,12 +13,20 @@ Foo
 [% END %]
 EOF
 
-is $foo, q:to/EOF/;
+my $foo-expect = q:to/EOF/;
 <html>
 <body>Hello</body>
 </html>
 
 EOF
+
+is $foo, $foo-expect;
+
+# get-data-section works in scopes
+sub {
+    is $render.get-data-section('foo.html'), $foo-expect;
+}();
+{{{{ is $render.get-data-section('foo.html'), $foo-expect; }}}}
 
 done-testing;
 

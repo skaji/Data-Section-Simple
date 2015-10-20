@@ -9,19 +9,19 @@ unit class Data::Section::Simple;
 has $.package;
 
 multi get-data-section() is export {
-    my $content = CALLER::<$=finish>;
+    my $content = CALLER::UNIT::<$=finish>;
     $?CLASS!parse($content);
 }
 multi get-data-section(Str:D $name) {
-    my $content = CALLER::<$=finish>;
+    my $content = CALLER::UNIT::<$=finish>;
     $?CLASS!parse($content, $name);
 }
 multi method get-data-section() {
-    my $content = CALLER::<$=finish>;
+    my $content = CALLER::UNIT::<$=finish>;
     self!parse($content);
 }
 multi method get-data-section(Str:D $name) {
-    my $content = CALLER::<$=finish>;
+    my $content = CALLER::UNIT::<$=finish>;
     self!parse($content, $name);
 }
 
