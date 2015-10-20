@@ -3,8 +3,6 @@ unit class A;
 use Data::Section::Simple;
 
 method foo {
-    # TODO retrieve caller's =finish
-    my %all = get-data-section;
-    # do something
+    my %all = get-data-section(content => CALLER::UNIT::<$=finish>);
     return %all;
 }

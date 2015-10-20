@@ -8,24 +8,14 @@ unit class Data::Section::Simple;
 
 has $.package;
 
-multi get-data-section() is export {
-    my $content = CALLER::UNIT::<$=finish>;
-    $?CLASS!parse($content);
+sub get-data-section(Str :$name, Str :$content) is export {
+    $?CLASS!parse(:$name, content => $content // CALLER::UNIT::<$=finish>);
 }
-multi get-data-section(Str:D $name) {
-    my $content = CALLER::UNIT::<$=finish>;
-    $?CLASS!parse($content, $name);
-}
-multi method get-data-section() {
-    my $content = CALLER::UNIT::<$=finish>;
-    self!parse($content);
-}
-multi method get-data-section(Str:D $name) {
-    my $content = CALLER::UNIT::<$=finish>;
-    self!parse($content, $name);
+multi method get-data-section(Str :$name, Str :$content) {
+    self!parse(:$name, content => $content // CALLER::UNIT::<$=finish>);
 }
 
-method !parse($content, Str $name?) {
+method !parse(Str :$name!, Str :$content!) {
     my @data = $content.split(/^^ '@@' \s+ (.+?) \s* \r?\n/, :all);
     @data.shift;
     my %all = do for @data -> $/, $c {
@@ -47,13 +37,13 @@ Data::Section::Simple - Read data from =finish
   # Functional interface
   use Data::Section::Simple;
   my %all = get-data-section;
-  my $foo = get-data-section('foo.html');
+  my $foo = get-data-section(name => 'foo.html');
 
   # OO interface
   need Data::Section::Simple;
   my $render = Data::Section::Simple.new;
   my %all = $render.get-data-section;
-  my $foo = $render.get-data-section('foo.html');
+  my $foo = $render.get-data-section(name => 'foo.html');
 
   =finish
 

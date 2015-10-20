@@ -5,7 +5,7 @@ need Data::Section::Simple;
 my $render = Data::Section::Simple.new;
 
 my %all = $render.get-data-section;
-my $foo = $render.get-data-section('foo.html');
+my $foo = $render.get-data-section(name => 'foo.html');
 
 is %all<bar.tt>, q:to/EOF/;
 [% IF true %]
@@ -24,9 +24,9 @@ is $foo, $foo-expect;
 
 # get-data-section works in scopes
 sub {
-    is $render.get-data-section('foo.html'), $foo-expect;
+    is $render.get-data-section(name => 'foo.html'), $foo-expect;
 }();
-{{{{ is $render.get-data-section('foo.html'), $foo-expect; }}}}
+{{{{ is $render.get-data-section(name => 'foo.html'), $foo-expect; }}}}
 
 done-testing;
 

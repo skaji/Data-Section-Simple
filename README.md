@@ -11,13 +11,13 @@ SYNOPSIS
       # Functional interface
       use Data::Section::Simple;
       my %all = get-data-section;
-      my $foo = get-data-section('foo.html');
+      my $foo = get-data-section(name => 'foo.html');
 
       # OO interface
       need Data::Section::Simple;
       my $render = Data::Section::Simple.new;
       my %all = $render.get-data-section;
-      my $foo = $render.get-data-section('foo.html');
+      my $foo = $render.get-data-section(name => 'foo.html');
 
       =finish
 
