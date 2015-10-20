@@ -1,7 +1,12 @@
 use v6;
 unit class Data::Section::Simple;
 
-has $.package; # TODO
+# TODO
+# * do not use CALLER
+# * do not use CALLER many times
+# * package?
+
+has $.package;
 
 multi get-data-section() is export {
     my $content = CALLER::<$=finish>;
@@ -21,10 +26,10 @@ multi method get-data-section(Str:D $name) {
 }
 
 method !parse($content, Str $name?) {
-    my @data = $content.split(/\r?\n^^ '@@' \s+ (.+?) \s* \r?\n/, :all);
+    my @data = $content.split(/^^ '@@' \s+ (.+?) \s* \r?\n/, :all);
     @data.shift;
     my %all = do for @data -> $/, $c {
-        $/[0].Str => $c;
+        $/[0].Str => $c; # XXX
     };
     $name ?? %all{$name} !! %all;
 }

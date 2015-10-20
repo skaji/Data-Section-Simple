@@ -15,6 +15,7 @@ is $foo, q:to/EOF/;
 <html>
 <body>Hello</body>
 </html>
+
 EOF
 
 done-testing;
