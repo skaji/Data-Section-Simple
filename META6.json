@@ -1,7 +1,8 @@
 {
   "name" : "Data::Section::Simple",
-  "source-url" : "git://github.com/shoichikaji/Data-Section-Simple.git",
-  "perl" : "v6",
+  "source-url" : "git://github.com/skaji/Data-Section-Simple.git",
+  "perl" : "6.c",
+  "resources" : [ ],
   "build-depends" : [ ],
   "provides" : {
     "Data::Section::Simple" : "lib/Data/Section/Simple.pm6"

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/shoichikaji/Data-Section-Simple.svg?branch=master)](https://travis-ci.org/shoichikaji/Data-Section-Simple)
+[![Build Status](https://travis-ci.org/skaji/Data-Section-Simple.svg?branch=master)](https://travis-ci.org/skaji/Data-Section-Simple)
 
 NAME
 ====
